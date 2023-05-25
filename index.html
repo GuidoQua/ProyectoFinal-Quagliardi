@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+        <!--Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <!--Iconos-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <!-- Toastify -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <!-- Mi CSS -->
+        <link rel="stylesheet" href="./css/style.css">
+
+    <title>E-commerce | JS</title>
+
+</head>
+<body>
+
+    <!--Inicia NavBar-->
+    <header class="sticky-top">
+        <nav class="navbar p-0 navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html">
+                    <img class="imagen__logo" src="./img/logo.png" alt="Logo B-BallStyle">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-lg-0">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./index.html">Inicio</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link botones-categorias" id="Calzado" href="#">Calzado</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link botones-categorias" id="Indumentaria" href="#">Indumentaria</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link botones-categorias" id="Accesorios" href="#">Accesorios</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Termina NavBar-->
+
+    <main>
+        <!--Buscador y Carrito-->
+        <section class="position-buscador position-fixed start-50 translate-middle d-flex justify-content-center">
+            <div class="contenedor-buscar">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 color__box" id="buscarProducto" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn__mio btn-outline" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <div class="nav__carrito">
+                        <a class="nav-link position-buscador-hijo" href="#contenedor-carrito"><i class="bi bi-cart3 position-buscador-hijo"><span id="numero-carrito"></span></i></a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <!--Contenedor Productos-->
+            <h1 class="text-center pt-3 mt-5 contenedor-titulos" id="id1">Todos los Productos</h1> <!-- ESTE TÍTULO SE CARGA CON JS-->
+            <div id="contenedor-productos" class="container contenedor-productos">
+                <!-- ESTE DIV SE CARGA CON JS-->
+            </div>
+        </section>
+
+        <!--Contenedor Carrito-->
+        <section class="d-flex justify-content-center">
+            <div class="container__carrito">
+                <h2 class="titulo__carrito">Carrito de Compras <i class="bi bi-cart3"></i></h2>
+                <div  class="" id="contenedor-carrito">
+                    <!--CARGO EL CARRITO CON JS-->
+                </div>
+                <div id="total-carrito"></div>
+            </div>
+        </section>
+
+        <!--Botenes Vaciar - Comprar-->
+        <section class="d-flex justify-content-center">
+            <div class="comprar-vaciar" id="contenedor-comprar-vaciar">
+                <div class="st__vaciar" id="contenedor-vaciar"></div>
+                <div class="st__comprar" id="contenedor-comprar"></div>
+            </div>
+        </section>
+
+
+        <!--Formulario de compra -->
+        <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalFormularioLabel">DATOS DE TU COMPRA</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="mb-3 col-md-6">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control color__box" id="nombre" required>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control color__box" id="apellido" required>
+                            </div>
+                            <div class="mb-3 col-md-4">
+                                <label for="dni" class="form-label">DNI / CUIT</label>
+                                <input type="text" class="form-control color__box" id="dni" required>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control color__box" id="email" required>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="provincia" class="form-label">Provincia</label>
+                                <input type="text" class="form-control color__box" id="provincia" required>
+                            </div>
+                            <div class="mb-3 col-md-4">
+                                <label for="ciudad" class="form-label">Ciudad</label>
+                                <input type="text" class="form-control color__box" id="ciudad" required>
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label for="cdp" class="form-label">Código Postal</label>
+                                <input type="text" class="form-control color__box" id="cdp" required>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="calle" class="form-label">Calle</label>
+                                <input type="text" class="form-control color__box" id="calle" required>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="altura" class="form-label">Nº de calle</label>
+                                <input type="text" class="form-control color__box" id="altura" required>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="piso" class="form-label">Piso / Departamento</label>
+                                <input type="text" class="form-control color__box" id="piso" required>
+                            </div>
+
+                            <div class="mb-3 d-flex justify-content-end col-md-12">
+                                <div class="mb-1 me-2">
+                                    <button type="submit" class="btn btn-dark" id="finalizar-compra">Finalizar Compra</button>
+                                </div>
+                                <div class="mb-1 ms-2">
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-center text-white color_footer">
+        <!-- Grid container -->
+        <div class="pt-2">
+        <!-- Section: Social media -->
+        <section>
+    
+            <!-- Google -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="mailto:guidoquagliardi@gmail.com"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target="_blank"
+            ><i class="bi bi-google"></i>
+            </a>
+    
+            <!-- Instagram -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://www.instagram.com/guidoquagliardi/"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target="_blank"
+            ><i class="bi bi-instagram"></i
+            ></a>
+    
+            <!-- Linkedin -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://www.linkedin.com/in/guido-quagliardi-316a21258/"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target="_blank"
+            ><i class="bi bi-linkedin"></i>
+            </a>
+            <!-- Github -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://github.com/GuidoQua"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target="_blank"
+            ><i class="bi bi-github"></i>
+            </a>
+                    <!-- Copyright -->
+            <div class="text-center st__copyr">
+                <p class="text-dark p-1 m-0">© 2023 Guido Quagliardi - All Rights Reserved.</p>
+            </div>
+        </section>
+        </div>
+    </footer>
+    
+    <!--Bootstrap js-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--JavaScrip-->
+    <script src="./js/main.js"></script>
+</body>
+</html>
