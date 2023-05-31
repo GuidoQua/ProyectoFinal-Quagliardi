@@ -1,13 +1,7 @@
 
 let productos = [];
 
-// fetch("./data/data.json")
-//     .then(response => response.json())
-//     .then(data => {
-//         productos = data;
-//         cargarProductos(productos);
-//     })
-
+//Traer los productos del JSON
 
 async function traerProductos() {
     const response = await fetch("./data/data.json");
@@ -353,6 +347,11 @@ botonesCategorias.forEach(boton =>{
         cargarProductos(productosCategorias);
         const titulosCategorias = productos.find(producto => producto.categoria.nombre === e.currentTarget.id);
         titulos.innerText = titulosCategorias.categoria.nombre;
+
+        const cerrarNavBar = document.querySelector(".navbar-toggler");
+        if (cerrarNavBar.offsetParent !== null) {
+        cerrarNavBar.click();
+        }
     });
 });
 
